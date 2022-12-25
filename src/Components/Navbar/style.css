@@ -1,0 +1,31 @@
+@import url('https://fonts.cdnfonts.com/css/product-sans');
+@import url('https://fonts.cdnfonts.com/css/comfortaa');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f0e7e7;
+}
+.navbar{
+    width: 100%;
+    min-height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:#c1440e;
+    color: #f0e7e7;
+    font-family: 'Comfortaa', sans-serif; 
+    border-radius: 0px 0px 15px 15px; 
+    -moz-box-shadow:0 5px 5px rgba(71, 71, 71, 0.75);
+    -webkit-box-shadow: 0 5px 5px rgba(85, 83, 83, 0.75);
+    box-shadow: 0 5px 5px rgba(80, 79, 79, 0.75); 
+}
+
+.navbar-header {
+    font-size: 4rem;
+    text-align: center;
+    letter-spacing: 1px;
+}
