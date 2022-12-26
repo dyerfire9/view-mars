@@ -1,0 +1,25 @@
+@import url('https://fonts.cdnfonts.com/css/product-sans');
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3rem;
+}
+
+.form-header{
+    font-family: 'Product Sans', sans-serif;
+    font-size: 2rem;
+
+}
+
+.form-input{
+    font-family: 'Product Sans', sans-serif;
+    font-size: 1.4rem;
+    border-radius: 10px;
+    padding: 10px;
+    width: 40%;
+    text-indent: 5px;
+    margin-top: 2rem;
+}
