@@ -39,14 +39,16 @@ export default function Dashboard(){
                     className="form-input"
                     value={formData.sol}
                     name="sol"
-                    onChange={handleChange}  />
+                    onChange={handleChange}
+                    placeholder='Enter Sol'  />
 
                 <input 
                     type="text"
                     className="form-input"
                     value={formData.cameratype}
                     name="cameratype"
-                    onChange={handleChange} />
+                    onChange={handleChange}
+                    placeholder='Enter Camera' />
             </div>
 
             {/* {photos[0].img_src} */}
