@@ -4,8 +4,9 @@ import ImageCard from "./ImageCard/ImageCard"
 
 export default function Dashboard(){    
     let [data, setData] = React.useState()
+    let [roverData, setRoverData] = React.useState()
     let [formData, setFormData] = React.useState({
-        sol: '540',
+        sol: '10',
         cameratype: 'NAVCAM',
     })
 
@@ -31,7 +32,18 @@ export default function Dashboard(){
         .catch(err => {
           console.log(err)
         })
+    }, []); 
+    
+    React.useEffect(() => {
+        // Now this fetch data call will run only once since the dependencies array is empty
+        fetch('https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity/?api_key=XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn')
+        .then(res => res.json())
+        .then(data => {setRoverData(data)})
+        .catch(err => {
+          console.log(err)
+        })
     }, []);  
+
 
     return (
         <div>
@@ -64,10 +76,11 @@ export default function Dashboard(){
             </form>
 
             {/* {photos[0].img_src} */}
-            {console.log(data && data.photos)}
+            {console.log(data)}
+            {console.log(roverData)}
             <div className="img-info">
                 {data && <h3>Rover: {data.photos[0].rover.name} </h3>}
-                {data && <h3>Mars Date (sol): {formData.sol} </h3>}
+                {data && <h3>Mars Date (sol): {data.photos[0].sol} </h3>}
                 {data && <h3>Earth Date: {data.photos[0].earth_date} </h3>}
             </div>
 
