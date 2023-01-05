@@ -6,13 +6,12 @@ import {Fade} from "react-awesome-reveal";
 
 export default function ImageViewer(props){
     let viewer = document.getElementById('imageViewer-viwer');
-
+    var src;
+    let img_obj = new Image();
+    
     function toggle(){
         props.changeState(prevVal => ({...prevVal, isOpen: !prevVal.isOpen}))
     }
-
-    var src;
-    let img_obj = new Image();
 
     function crossOrigin(url) {
         var co = "https://api.codetabs.com/v1/proxy?quest=";
@@ -27,7 +26,7 @@ export default function ImageViewer(props){
     function downloadImg(){
         let url = crossOrigin(props.img)
 
-        fetch(img_obj.src, {mode: 'cors'})
+        fetch(url, {mode: 'cors'})
         .then(resp => resp.blob())
         .then(blobobject => {
             const blob = window.URL.createObjectURL(blobobject);

@@ -16,7 +16,7 @@ export default function Dashboard(){
     let [data, setData] = React.useState()
     let [roverData, setRoverData] = React.useState()
     let [formData, setFormData] = React.useState({
-        sol: '10',
+        sol: '540',
         cameratype: 'NAVCAM',
     })
     let apiKey = 'XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn'
