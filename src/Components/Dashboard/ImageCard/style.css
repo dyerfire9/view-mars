@@ -57,4 +57,27 @@
     visibility: visible;
     opacity: 0.7; 
 }
+@media screen and (max-width: 1024px){
+    .imagecard-wrapper{
+        width: 230px;
+        height: 190px;
+        margin: 10px;
+        cursor: pointer;
+        box-shadow: 0 0.3vw 0.6vw 0 #00000066;
+        border-radius: 10px 10px 10px 10px;
+        background-color:#c1440e;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .imagecard-wrapper{
+        width: 140px;
+        height: 120px;
+        margin: 10px;
+        cursor: pointer;
+        box-shadow: 0 0.3vw 0.6vw 0 #00000066;
+        border-radius: 10px 10px 10px 10px;
+        background-color:#c1440e;
+    }
+}
 
