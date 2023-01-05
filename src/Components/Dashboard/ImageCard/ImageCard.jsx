@@ -4,8 +4,7 @@ import React from 'react'
 
 
 export default function ImageCard(props){
-    let [isHover, setisHover] = React.useState(false)
-    let img = props.img
+    let content = props.img
 
     return(
     <div className="imagecard-wrapper">

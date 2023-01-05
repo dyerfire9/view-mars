@@ -1,5 +1,6 @@
 import React from "react"
 import './style.css'
+import temp_pic from './temp_pic.jpg'
 import ImageCard from "./ImageCard/ImageCard"
 import ImageViewer from "./ImageViewer/ImageViewer"
 
@@ -7,7 +8,7 @@ export default function Dashboard(){
     let [isOpen, setIsOpen] = React.useState(({
         isOpen: false,
         item: {
-            imgLink: 'http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/r…edr/ncam/NLA_398380694EDR_F0030000NCAM15000M_.JPG'
+            img: temp_pic
         }
 
     }))
@@ -100,6 +101,7 @@ export default function Dashboard(){
                 {data && <ImageCard data={data.photos[55]}/>} */}
                 {data && data.photos.map((img, index) => <ImageCard data={img} key={index} state={isOpen} changeState={setIsOpen}/>)}
             </div>
+            
             <ImageViewer img={isOpen.item.img} state={isOpen} changeState={setIsOpen}/>
         </div>
     )
