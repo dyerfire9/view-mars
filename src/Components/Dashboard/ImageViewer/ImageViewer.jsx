@@ -10,21 +10,36 @@ export default function ImageViewer(props){
     function toggle(){
         props.changeState(prevVal => ({...prevVal, isOpen: !prevVal.isOpen}))
     }
+
+    var src;
+    let img_obj = new Image();
+
+    function crossOrigin(url) {
+        var co = "https://api.codetabs.com/v1/proxy?quest=";
+        src = co + url;
+        img_obj.crossOrigin = 'anonymous';
+        img_obj.onload = function() { ; }
+        img_obj.src = src;
+
+        return img_obj.src;
+      }
+
     function downloadImg(){
-        let url = props.img
-            fetch(url)
-            .then(resp => resp.blob())
-            .then(blobobject => {
-                const blob = window.URL.createObjectURL(blobobject);
-                const anchor = document.createElement('a');
-                anchor.style.display = 'none';
-                anchor.href = blob;
-                anchor.download = "curiosity_img.png";
-                document.body.appendChild(anchor);
-                anchor.click();
-                window.URL.revokeObjectURL(blob);
-            })
-            .catch(() => console.log('An error in downloading the file sorry'));
+        let url = crossOrigin(props.img)
+
+        fetch(img_obj.src, {mode: 'cors'})
+        .then(resp => resp.blob())
+        .then(blobobject => {
+            const blob = window.URL.createObjectURL(blobobject);
+            const anchor = document.createElement('a');
+            anchor.style.display = 'none';
+            anchor.href = blob;
+            anchor.download = "curiosity_img.png";
+            document.body.appendChild(anchor);
+            anchor.click();
+            window.URL.revokeObjectURL(blob);
+        })
+        .catch(() => console.log('An error in downloading the file sorry'));
     }
 
     window.onclick = function(event) {
