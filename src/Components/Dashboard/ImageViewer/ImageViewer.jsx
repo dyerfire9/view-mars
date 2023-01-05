@@ -10,7 +10,8 @@ export default function ImageViewer(props){
     function toggle(){
         props.changeState(prevVal => ({...prevVal, isOpen: !prevVal.isOpen}))
     }
-    function downloadImg(url){
+    function downloadImg(){
+        let url = props.img
             fetch(url)
             .then(resp => resp.blob())
             .then(blobobject => {
@@ -18,7 +19,7 @@ export default function ImageViewer(props){
                 const anchor = document.createElement('a');
                 anchor.style.display = 'none';
                 anchor.href = blob;
-                anchor.download = "name.png";
+                anchor.download = "curiosity_img.png";
                 document.body.appendChild(anchor);
                 anchor.click();
                 window.URL.revokeObjectURL(blob);
@@ -37,7 +38,7 @@ export default function ImageViewer(props){
             <div className='imageViewer-container'>
                 <div className="imageViewer-header">
                     <div className="imageViewer-header-container">
-                        <button className="imageViewer-download" onClick={downloadImg(props.img)}><BiDownload/></button>
+                        <button className="imageViewer-download" onClick={downloadImg}><BiDownload/></button>
                         <button className="imageViewer-close" onClick={toggle}><BiX/></button>
                     </div>
     
