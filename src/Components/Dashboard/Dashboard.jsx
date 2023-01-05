@@ -1,16 +1,26 @@
 import React from "react"
 import './style.css'
 import ImageCard from "./ImageCard/ImageCard"
+import ImageViewer from "./ImageViewer/ImageViewer"
 
 export default function Dashboard(){    
+    let [isOpen, setIsOpen] = React.useState(({
+        isOpen: false,
+        item: {
+            imgLink: 'http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/r…edr/ncam/NLA_398380694EDR_F0030000NCAM15000M_.JPG'
+        }
+
+    }))
+
     let [data, setData] = React.useState()
     let [roverData, setRoverData] = React.useState()
     let [formData, setFormData] = React.useState({
         sol: '10',
         cameratype: 'NAVCAM',
     })
-
-    let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn`
+    let apiKey = 'XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn'
+    let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
+    // Use manifest to know what cameras were used on the selected sol
 
     function handleChange(event) {
         setFormData(prevFormData =>{
@@ -35,7 +45,6 @@ export default function Dashboard(){
     }, []); 
     
     React.useEffect(() => {
-        // Now this fetch data call will run only once since the dependencies array is empty
         fetch('https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity/?api_key=XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn')
         .then(res => res.json())
         .then(data => {setRoverData(data)})
@@ -89,11 +98,9 @@ export default function Dashboard(){
                 {data && <ImageCard data={data.photos[3]}/>}
                 {data && <ImageCard data={data.photos[33]}/>}
                 {data && <ImageCard data={data.photos[55]}/>} */}
-                {data && data.photos.map((img, index) => <ImageCard data={img} key={index}/>)}
-
-
+                {data && data.photos.map((img, index) => <ImageCard data={img} key={index} state={isOpen} changeState={setIsOpen}/>)}
             </div>
-           {/* {data && data.photos.map((img, index) => <ImageCard data={img} key={index}/>)} */}
+            <ImageViewer img={isOpen.item.img} state={isOpen} changeState={setIsOpen}/>
         </div>
     )
 }
