@@ -8,6 +8,7 @@ export default function Dashboard(){
         sol: '550',
         cameratype: 'NAVCAM',
     })
+
     let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn`
 
     function handleChange(event) {
@@ -46,7 +47,7 @@ export default function Dashboard(){
 
                     <select 
                         id="cameratype"
-                        value={formData.cameratyp}
+                        value={formData.cameratype}
                         onChange={handleChange}
                         className="form-input"
                         name="cameratype"
@@ -65,16 +66,17 @@ export default function Dashboard(){
             {/* {photos[0].img_src} */}
             {console.log(data && data.photos)}
             <div className="img-info">
-
+                <h3>Rover:  </h3>
+                <h3>Mars Date (sol): </h3>
+                <h3>Earth Date: </h3>
             </div>
 
             <div className="img-container">
-                <h3>Curiosity Rover</h3>
-                {/* {data && <ImageCard data={data.photos[4]}/>}
+                {data && <ImageCard data={data.photos[4]}/>}
                 {data && <ImageCard data={data.photos[3]}/>}
                 {data && <ImageCard data={data.photos[33]}/>}
-                {data && <ImageCard data={data.photos[55]}/>} */}
-                {data && data.photos.map((img, index) => <ImageCard data={img} key={index}/>)}
+                {data && <ImageCard data={data.photos[55]}/>}
+                {/* {data && data.photos.map((img, index) => <ImageCard data={img} key={index}/>)} */}
 
 
             </div>
