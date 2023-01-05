@@ -37,20 +37,24 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    text-align: center;
+    width: 100%;
+    padding: 8px 15px;
     background: black;
     color: white;
     margin-bottom: 5px;
     font-family: 'Product Sans', sans-serif;
+    font-size: 1.4rem;
+    text-align: center;
     opacity: 0;
     visibility: hidden;
     -webkit-transition: visibility 0s, opacity 0.5s linear; 
     transition: visibility 0s, opacity 0.5s linear;
+    transition: visibility 0s, opacity 0.5s ease-out;
+    -webkit-transition: visibility 0.5s, opacity 0.5s ease-out;
 }
 .imagecard-wrapper:hover div {
     cursor: pointer;
-    width: 100%;
-    padding: 8px 15px;
     visibility: visible;
     opacity: 0.7; 
 }
+
