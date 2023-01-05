@@ -5,7 +5,7 @@ import ImageCard from "./ImageCard/ImageCard"
 import ImageViewer from "./ImageViewer/ImageViewer"
 
 export default function Dashboard(){    
-    let [isOpen, setIsOpen] = React.useState(({
+    let [viewerState, setViewerState] = React.useState(({
         isOpen: false,
         item: {
             img: temp_pic
@@ -99,10 +99,10 @@ export default function Dashboard(){
                 {data && <ImageCard data={data.photos[3]}/>}
                 {data && <ImageCard data={data.photos[33]}/>}
                 {data && <ImageCard data={data.photos[55]}/>} */}
-                {data && data.photos.map((img, index) => <ImageCard data={img} key={index} state={isOpen} changeState={setIsOpen}/>)}
+                {data && data.photos.map((img, index) => <ImageCard data={img} key={index} state={viewerState} changeState={setViewerState}/>)}
             </div>
             
-            <ImageViewer img={isOpen.item.img} state={isOpen} changeState={setIsOpen}/>
+            <ImageViewer img={viewerState.item.img} state={viewerState} changeState={setViewerState}/>
         </div>
     )
 }

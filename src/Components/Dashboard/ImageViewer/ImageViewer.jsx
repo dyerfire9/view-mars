@@ -2,10 +2,10 @@ import './style.css';
 import React from 'react';
 import { BiDownload, BiX} from "react-icons/bi";
 import ReactImageMagnify from 'react-image-magnify';
+import {Fade} from "react-awesome-reveal";
 
 export default function ImageViewer(props){
     let viewer = document.getElementById('imageViewer-viwer');
-    const style1 = { color: "white", fontSize: "1.2rem", display:'inline-flex', 'verticalAlign': 'text-top'}
 
     function toggle(){
         props.changeState(prevVal => ({...prevVal, isOpen: !prevVal.isOpen}))
@@ -34,7 +34,7 @@ export default function ImageViewer(props){
   }
     
     return (
-        <div id='imageViewer-viwer' className={`imageViewer-viwer`}>
+        <div id='imageViewer-viwer' className={`imageViewer-viwer  fade-in ${props.state.isOpen ? 'viewer-open' : 'viewer-closed'}`}>
             <div className='imageViewer-container'>
                 <div className="imageViewer-header">
                     <div className="imageViewer-header-container">
