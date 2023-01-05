@@ -5,7 +5,7 @@ import ImageCard from "./ImageCard/ImageCard"
 export default function Dashboard(){    
     let [data, setData] = React.useState()
     let [formData, setFormData] = React.useState({
-        sol: '550',
+        sol: '540',
         cameratype: 'NAVCAM',
     })
 
@@ -66,17 +66,17 @@ export default function Dashboard(){
             {/* {photos[0].img_src} */}
             {console.log(data && data.photos)}
             <div className="img-info">
-                <h3>Rover:  </h3>
-                <h3>Mars Date (sol): </h3>
-                <h3>Earth Date: </h3>
+                {data && <h3>Rover: {data.photos[0].rover.name} </h3>}
+                {data && <h3>Mars Date (sol): {formData.sol} </h3>}
+                {data && <h3>Earth Date: {data.photos[0].earth_date} </h3>}
             </div>
 
             <div className="img-container">
-                {data && <ImageCard data={data.photos[4]}/>}
+                {/* {data && <ImageCard data={data.photos[4]}/>}
                 {data && <ImageCard data={data.photos[3]}/>}
                 {data && <ImageCard data={data.photos[33]}/>}
-                {data && <ImageCard data={data.photos[55]}/>}
-                {/* {data && data.photos.map((img, index) => <ImageCard data={img} key={index}/>)} */}
+                {data && <ImageCard data={data.photos[55]}/>} */}
+                {data && data.photos.map((img, index) => <ImageCard data={img} key={index}/>)}
 
 
             </div>

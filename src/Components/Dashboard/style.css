@@ -25,10 +25,22 @@
 }
 
 .img-container{
+    padding: 0px 5px;
     display: flex;
     flex-wrap: wrap;
     position: relative;
     align-items: center;
     justify-content: center;
     padding-bottom: 60px;
+}
+
+.img-info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: 'Product Sans', sans-serif;
+    color:#c1440e;
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 1.5px;
 }
