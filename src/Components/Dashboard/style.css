@@ -23,3 +23,12 @@
     text-indent: 5px;
     margin-top: 2rem;
 }
+
+.img-container{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 60px;
+}
