@@ -4,7 +4,19 @@ import temp_pic from './temp_pic.jpg'
 import ImageCard from "./ImageCard/ImageCard"
 import ImageViewer from "./ImageViewer/ImageViewer"
 
-export default function Dashboard(){    
+export default function Dashboard(){  
+    const cameraLegend = {
+        'FHAZ': 'Front Hazard Avoidance Camera',
+        'RHAZ':'Rear Hazard Avoidance Camera',
+        'MAST':'Mast Camera',
+        'CHEMCAM':'Chem-Camera Complex',
+        'MAHLI':'Mars Hand Lens Imager',
+        'MARDI':'Mars Descent Imager',
+        'NAVCAM':'Navigation Camera',
+        'PANCAM':'Panoramic Camera',
+        'MINITES':'Miniature Thermal Emission Spectrometer'
+    }
+
     let [viewerState, setViewerState] = React.useState(({
         isOpen: false,
         item: {
@@ -14,14 +26,41 @@ export default function Dashboard(){
     }))
 
     let [data, setData] = React.useState()
-    let [roverData, setRoverData] = React.useState()
+    let [roverData, setRoverData] = React.useState({})
+    let [roverPhotosList, setRoverPhotosList] = React.useState([])
     let [formData, setFormData] = React.useState({
-        sol: '540',
+        sol: 340,
         cameratype: 'NAVCAM',
     })
     let apiKey = 'XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn'
     let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
     // Use manifest to know what cameras were used on the selected sol
+    
+    let currCameras = []
+    // console.log(roverData && roverData.photo_manifest)
+
+    let x = (roverData && roverData.max_sol)
+    let photos = (roverPhotosList && roverPhotosList[0])
+    console.log(x, photos)
+
+    for (let i = 0; i < roverPhotosList.length; i++){
+        if (roverPhotosList[i].sol === formData.sol){
+            currCameras = roverPhotosList[i].cameras
+        }
+    }
+    console.log(currCameras)
+    
+
+
+    // function getCameras(){
+    //     data = roverData && roverData.photo_manifest
+    //     for(let i = 0; i < data.max_sol; i++){
+    //         if(formData.sol === data[i].sol){
+    //            currCameras = data[i].cameras
+    //         }
+    //     }
+
+    // }
 
     function handleChange(event) {
         setFormData(prevFormData =>{
@@ -32,14 +71,16 @@ export default function Dashboard(){
                 [name]: type === "checkbox" ? checked : value
             }
         })
-        console.log(formData)
+        // console.log(formData)
     }
 
     React.useEffect(() => {
         // Now this fetch data call will run only once since the dependencies array is empty
         fetch(apiLink)
         .then(res => res.json())
-        .then(data => {setData(data)})
+        .then(data => {
+            setData(data)
+        })
         .catch(err => {
           console.log(err)
         })
@@ -48,7 +89,10 @@ export default function Dashboard(){
     React.useEffect(() => {
         fetch('https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity/?api_key=XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn')
         .then(res => res.json())
-        .then(data => {setRoverData(data)})
+        .then(data => {
+            setRoverData(data.photo_manifest)
+            setRoverPhotosList(data.photo_manifest.photos)
+        })
         .catch(err => {
           console.log(err)
         })
@@ -74,20 +118,21 @@ export default function Dashboard(){
                         className="form-input"
                         name="cameratype"
                     >
-                    <option value="">Choose Camera</option>
-                    <option value="FHAZ">Front Hazard Avoidance Camera</option>
-                    <option value="RHAZ">Rear Hazard Avoidance Camera</option>
-                    <option value="MAST">Mast Camera</option>
-                    <option value="CHEMCAM">Chemistry and Camera Complex</option>
-                    <option value="MAHLI">Mars Hand Lens Imager</option>
-                    <option value="MARDI">Mars Descent Imager</option>
-                    <option value="NAVCAM">Navigation Camera</option>
+                    {<option value="">Choose Camera</option>}
+                    {currCameras && currCameras.map((cameratype, index) => <option value={cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
+                    {/* {<option value="FHAZ">Front Hazard Avoidance Camera</option>}
+                    {<option value="RHAZ">Rear Hazard Avoidance Camera</option>}
+                    {<option value="MAST">Mast Camera</option>}
+                    {<option value="CHEMCAM">Chemistry and Camera Complex</option>}
+                    {<option value="MAHLI">Mars Hand Lens Imager</option>}
+                    {<option value="MARDI">Mars Descent Imager</option>}
+                    {<option value="NAVCAM">Navigation Camera</option>} */}
                 </select>
             </form>
 
             {/* {photos[0].img_src} */}
-            {console.log(data)}
-            {console.log(roverData)}
+            {/* {console.log(data)}
+            {console.log(roverData)} */}
             <div className="img-info">
                 {data && <h3>Rover: {data.photos[0].rover.name} </h3>}
                 {data && <h3>Mars Date (sol): {data.photos[0].sol} </h3>}
