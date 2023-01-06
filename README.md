@@ -1,11 +1,15 @@
+# View Mars
 
 
+
+## How to Run
 This project requires Node.js to be installed in order to run
 
 1. Clone the Repo, then install dependencies
 2. npm install
 3. npm start to start a localhost server with the website.
 4. Enjoy viewing my site!
+
 
 
 ## Author information
