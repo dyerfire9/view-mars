@@ -29,38 +29,19 @@ export default function Dashboard(){
     let [roverData, setRoverData] = React.useState({})
     let [roverPhotosList, setRoverPhotosList] = React.useState([])
     let [formData, setFormData] = React.useState({
-        sol: 340,
+        rover: 'Curiosity',
+        sol: 540,
         cameratype: 'NAVCAM',
     })
     let apiKey = 'XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn'
-    let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
-    // Use manifest to know what cameras were used on the selected sol
-    
+    let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/${formData.rover}/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
     let currCameras = []
-    // console.log(roverData && roverData.photo_manifest)
-
-    let x = (roverData && roverData.max_sol)
-    let photos = (roverPhotosList && roverPhotosList[0])
-    console.log(x, photos)
 
     for (let i = 0; i < roverPhotosList.length; i++){
         if (roverPhotosList[i].sol === formData.sol){
             currCameras = roverPhotosList[i].cameras
         }
-    }
-    console.log(currCameras)
-    
-
-
-    // function getCameras(){
-    //     data = roverData && roverData.photo_manifest
-    //     for(let i = 0; i < data.max_sol; i++){
-    //         if(formData.sol === data[i].sol){
-    //            currCameras = data[i].cameras
-    //         }
-    //     }
-
-    // }
+    }    
 
     function handleChange(event) {
         setFormData(prevFormData =>{
@@ -75,7 +56,6 @@ export default function Dashboard(){
     }
 
     React.useEffect(() => {
-        // Now this fetch data call will run only once since the dependencies array is empty
         fetch(apiLink)
         .then(res => res.json())
         .then(data => {
@@ -112,6 +92,17 @@ export default function Dashboard(){
                     placeholder='Enter Sol'  />
 
                     <select 
+                        id="rover"
+                        value={formData.rover}
+                        onChange={handleChange}
+                        className="form-input"
+                        name="rover"
+                        >
+                        {<option value="">Curiosity</option>}
+                        {<option value="">Opportunity</option>}
+                        {<option value="">Spirit</option>}
+                    </select>     
+                    <select 
                         id="cameratype"
                         value={formData.cameratype}
                         onChange={handleChange}
@@ -120,19 +111,9 @@ export default function Dashboard(){
                     >
                     {<option value="">Choose Camera</option>}
                     {currCameras && currCameras.map((cameratype, index) => <option value={cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
-                    {/* {<option value="FHAZ">Front Hazard Avoidance Camera</option>}
-                    {<option value="RHAZ">Rear Hazard Avoidance Camera</option>}
-                    {<option value="MAST">Mast Camera</option>}
-                    {<option value="CHEMCAM">Chemistry and Camera Complex</option>}
-                    {<option value="MAHLI">Mars Hand Lens Imager</option>}
-                    {<option value="MARDI">Mars Descent Imager</option>}
-                    {<option value="NAVCAM">Navigation Camera</option>} */}
                 </select>
             </form>
 
-            {/* {photos[0].img_src} */}
-            {/* {console.log(data)}
-            {console.log(roverData)} */}
             <div className="img-info">
                 {data && <h3>Rover: {data.photos[0].rover.name} </h3>}
                 {data && <h3>Mars Date (sol): {data.photos[0].sol} </h3>}
@@ -140,10 +121,6 @@ export default function Dashboard(){
             </div>
 
             <div className="img-container">
-                {/* {data && <ImageCard data={data.photos[4]}/>}
-                {data && <ImageCard data={data.photos[3]}/>}
-                {data && <ImageCard data={data.photos[33]}/>}
-                {data && <ImageCard data={data.photos[55]}/>} */}
                 {data && data.photos.map((img, index) => <ImageCard data={img} key={index} state={viewerState} changeState={setViewerState}/>)}
             </div>
             
