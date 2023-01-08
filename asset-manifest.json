@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/dyerfire9/view-mars/static/css/main.e01e0802.css",
-    "main.js": "/dyerfire9/view-mars/static/js/main.9a0d4eda.js",
-    "static/media/temp_pic.jpg": "/dyerfire9/view-mars/static/media/temp_pic.db8e61eb6d874504f10e.jpg",
-    "index.html": "/dyerfire9/view-mars/index.html",
-    "main.e01e0802.css.map": "/dyerfire9/view-mars/static/css/main.e01e0802.css.map",
-    "main.9a0d4eda.js.map": "/dyerfire9/view-mars/static/js/main.9a0d4eda.js.map"
+    "main.css": "/view-mars/static/css/main.e01e0802.css",
+    "main.js": "/view-mars/static/js/main.f2685f79.js",
+    "static/media/temp_pic.jpg": "/view-mars/static/media/temp_pic.db8e61eb6d874504f10e.jpg",
+    "index.html": "/view-mars/index.html",
+    "main.e01e0802.css.map": "/view-mars/static/css/main.e01e0802.css.map",
+    "main.f2685f79.js.map": "/view-mars/static/js/main.f2685f79.js.map"
   },
   "entrypoints": [
     "static/css/main.e01e0802.css",
-    "static/js/main.9a0d4eda.js"
+    "static/js/main.f2685f79.js"
   ]
 }
