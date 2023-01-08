@@ -22,7 +22,6 @@ export default function Dashboard(){
         item: {
             img: temp_pic
         }
-
     }))
 
     let [data, setData] = React.useState()
@@ -98,9 +97,9 @@ export default function Dashboard(){
                         className="form-input"
                         name="rover"
                         >
-                        {<option value="">Curiosity</option>}
-                        {<option value="">Opportunity</option>}
-                        {<option value="">Spirit</option>}
+                        {<option value={formData.rover}>Curiosity</option>}
+                        {<option value={formData.rover}>Opportunity</option>}
+                        {<option value={formData.rover}>Spirit</option>}
                     </select>     
                     <select 
                         id="cameratype"
@@ -110,7 +109,7 @@ export default function Dashboard(){
                         name="cameratype"
                     >
                     {<option value="">Choose Camera</option>}
-                    {currCameras && currCameras.map((cameratype, index) => <option value={cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
+                    {currCameras && currCameras.map((cameratype, index) => <option value={formData.cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
                 </select>
             </form>
 
