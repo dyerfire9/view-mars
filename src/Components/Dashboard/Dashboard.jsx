@@ -35,16 +35,16 @@ export default function Dashboard(){
     let [roverPhotosList, setRoverPhotosList] = React.useState([])
     let [curCameras, setCurCameras] = React.useState([])
     let [formData, setFormData] = React.useState({
-        sol: 540,
+        sol: 10,
         rover: 'Curiosity',
         cameratype: 'NAVCAM',
     })
     let apiKey = 'XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn'
     let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/${formData.rover}/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
 
+    
     function updateCameras(){
         for(let i = 0; i < roverPhotosList.length; i++) {
-            console.log(roverPhotosList[i])
 
             if (roverPhotosList[i].sol === formData.sol){
                 setCurCameras(roverPhotosList[i].cameras)
@@ -52,12 +52,29 @@ export default function Dashboard(){
             }
         }
     } 
+    
     console.log(curCameras)
     console.log(formData)
+    console.log(data)
+    
+
 
     function handleChange(event) {
         setFormData(prevFormData =>{
             const {name, value, type, checked} = event.target
+
+            if (name === 'sol' && value ===  ''){
+                return{
+                    ...prevFormData,
+                    [name]: ''
+                }
+            }
+            if (name === 'sol' && value < 0){
+                return{
+                    ...prevFormData,
+                    [name]: 0
+                }
+            }
             return{
                 ...prevFormData,
                 [name]: type === "checkbox" ? checked : value
@@ -87,7 +104,8 @@ export default function Dashboard(){
         .catch(err => {
           console.log(err)
         })
-    }, []);  
+        updateCameras()
+    }, [formData]);  
 
     function handleSubmit(event) {
         event.preventDefault()
@@ -136,7 +154,7 @@ export default function Dashboard(){
                 {data && <h3>Rover: {formData.rover} </h3>}
                 {data && <h3>Mars Date (sol): {roverData.max_sol} </h3>}
                 {data && <h3>Mars Date (sol): {formData.sol} </h3>}
-                {data && <h3>Earth Date: {data.photos[0].earth_date} </h3>}
+                {/* {data && <h3>Earth Date: {data.photos[0].earth_date} </h3>} */}
             </div>
 
             <div className="img-container">
