@@ -5,6 +5,12 @@ import ImageCard from "./ImageCard/ImageCard"
 import ImageViewer from "./ImageViewer/ImageViewer"
 
 export default function Dashboard(){  
+    const errorLegend = {
+        'Negative': 'Enter a Sol value from 0 to current Sol',
+        'None': 'Please enter a Sol value',
+        'High': 'Sol value must be less than current Sol',
+        'Nothing': 'There are no photos for the given para'
+    }
     const cameraLegend = {
         'FHAZ': 'Front Hazard Avoidance Camera',
         'RHAZ':'Rear Hazard Avoidance Camera',
@@ -27,31 +33,37 @@ export default function Dashboard(){
     let [data, setData] = React.useState()
     let [roverData, setRoverData] = React.useState({})
     let [roverPhotosList, setRoverPhotosList] = React.useState([])
+    let [curCameras, setCurCameras] = React.useState([])
     let [formData, setFormData] = React.useState({
-        rover: 'Curiosity',
         sol: 540,
+        rover: 'Curiosity',
         cameratype: 'NAVCAM',
     })
     let apiKey = 'XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn'
     let apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/${formData.rover}/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
-    let currCameras = []
 
-    for (let i = 0; i < roverPhotosList.length; i++){
-        if (roverPhotosList[i].sol === formData.sol){
-            currCameras = roverPhotosList[i].cameras
+    function updateCameras(){
+        for(let i = 0; i < roverPhotosList.length; i++) {
+            console.log(roverPhotosList[i])
+
+            if (roverPhotosList[i].sol === formData.sol){
+                setCurCameras(roverPhotosList[i].cameras)
+                break;
+            }
         }
-    }    
+    } 
+    console.log(curCameras)
+    console.log(formData)
 
     function handleChange(event) {
         setFormData(prevFormData =>{
             const {name, value, type, checked} = event.target
-
             return{
                 ...prevFormData,
                 [name]: type === "checkbox" ? checked : value
             }
         })
-        // console.log(formData)
+        updateCameras()
     }
 
     React.useEffect(() => {
@@ -63,7 +75,7 @@ export default function Dashboard(){
         .catch(err => {
           console.log(err)
         })
-    }, []); 
+    }, [formData]); 
     
     React.useEffect(() => {
         fetch('https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity/?api_key=XrhklQkPEfhtwohJSVqusnTh1VSATt2AkS4fKcPn')
@@ -77,10 +89,15 @@ export default function Dashboard(){
         })
     }, []);  
 
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log('Submit was clicked')
+        apiLink = `https://api.nasa.gov/mars-photos/api/v1/rovers/${formData.rover}/photos?sol=${formData.sol}&camera=${formData.cameratype}&api_key=${apiKey}`
 
+    }
     return (
         <div>
-            <form className="form">
+            <form className="form" onSubmit={handleSubmit}>
                 <h2 className="form-header">Input Parameters</h2>
                <input 
                     type="text"
@@ -97,9 +114,9 @@ export default function Dashboard(){
                         className="form-input"
                         name="rover"
                         >
-                        {<option value={formData.rover}>Curiosity</option>}
-                        {<option value={formData.rover}>Opportunity</option>}
-                        {<option value={formData.rover}>Spirit</option>}
+                        {<option value='Curiosity'>Curiosity</option>}
+                        {<option value='Opportunity'>Opportunity</option>}
+                        {<option value='Spirit'>Spirit</option>}
                     </select>     
                     <select 
                         id="cameratype"
@@ -109,13 +126,16 @@ export default function Dashboard(){
                         name="cameratype"
                     >
                     {<option value="">Choose Camera</option>}
-                    {currCameras && currCameras.map((cameratype, index) => <option value={formData.cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
+                    {curCameras && curCameras.map((cameratype, index) => <option value={cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
                 </select>
+                <button type="submit" className="form-submit">Submit</button>
+
             </form>
 
             <div className="img-info">
-                {data && <h3>Rover: {data.photos[0].rover.name} </h3>}
-                {data && <h3>Mars Date (sol): {data.photos[0].sol} </h3>}
+                {data && <h3>Rover: {formData.rover} </h3>}
+                {data && <h3>Mars Date (sol): {roverData.max_sol} </h3>}
+                {data && <h3>Mars Date (sol): {formData.sol} </h3>}
                 {data && <h3>Earth Date: {data.photos[0].earth_date} </h3>}
             </div>
 
