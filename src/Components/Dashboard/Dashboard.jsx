@@ -35,7 +35,7 @@ export default function Dashboard(){
     let [roverPhotosList, setRoverPhotosList] = React.useState([])
     let [curCameras, setCurCameras] = React.useState([])
     let [formData, setFormData] = React.useState({
-        sol: 10,
+        sol: '10',
         rover: 'Curiosity',
         cameratype: 'NAVCAM',
     })
@@ -45,9 +45,11 @@ export default function Dashboard(){
     
     function updateCameras(){
         for(let i = 0; i < roverPhotosList.length; i++) {
+            console.log(roverPhotosList[i])
 
-            if (roverPhotosList[i].sol === formData.sol){
+            if (roverPhotosList[i].sol === parseInt(formData.sol)){
                 setCurCameras(roverPhotosList[i].cameras)
+                console.log('This was run')
                 break;
             }
         }
@@ -55,7 +57,7 @@ export default function Dashboard(){
     
     console.log(curCameras)
     console.log(formData)
-    console.log(data)
+    console.log(roverData)
     
 
 
@@ -66,7 +68,7 @@ export default function Dashboard(){
             if (name === 'sol' && value ===  ''){
                 return{
                     ...prevFormData,
-                    [name]: ''
+                    [name]: ''   
                 }
             }
             if (name === 'sol' && value < 0){
