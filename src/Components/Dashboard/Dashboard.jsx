@@ -57,6 +57,7 @@ export default function Dashboard(){
     
     console.log(curCameras)
     console.log(formData)
+    console.log(roverPhotosList)
     console.log(roverData)
     
 
