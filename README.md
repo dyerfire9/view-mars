@@ -4,7 +4,7 @@
     <img alt="Icon" src="Promotional/logo-rounded.png" width="200px" style="borderRadius:5px">
   </div>
 
-A tool designed for research and analysis of the planet Mars surface & geology. View Mars web app provides up-to-date downloadable imagery data for many Rovers that were sent to Mars.
+A tool designed for research and analysis of the planet Mars surface & geology. View Mars web app provides up-to-date downloadable imagery data for many Rovers that were sent to Mars. (PLEASE NOTE: This web app is still being built)
 
 ## Website
 <h2 align="center" style="font-size:28px; line-height:1">
