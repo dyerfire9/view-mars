@@ -11,7 +11,7 @@ export default function Footer(){
                 <div className="footer-about">
                     <h2 className="footer-title">About</h2>
                     <h2 className="footer-about-content"> 
-                        This web app was created out of curiosity & interest in space exploration and analysis. This app is intended to be used for reasearch, analysis, for exploration purposes or just 
+                        This web app was created out of curiosity & interest in space exploration. This app is intended to be used for reasearch, analysis, for exploration purposes or just 
                         for quenching your curiosity. Feel free to reach out to me for any feedback or questions regarding this app.
                     </h2>
                 </div>
@@ -26,7 +26,6 @@ export default function Footer(){
                             <a href="https://linkedin.com/in/abdulmannancomp/" target="_blank" className="footer-links"><BsLinkedin style={style1}/>LinkedIn</a>
                             <a href="https://dyerfire9.github.io/portfolio-site/" target="_blank" className="footer-links"><BsFillCreditCard2FrontFill style={style1}/>Website</a>
                         </div>
-
                     </div>
                 </div>
             </div>
