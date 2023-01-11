@@ -59,7 +59,7 @@ export default function Dashboard(){
     console.log(formData)
     console.log(roverPhotosList)
     console.log(roverData)
-    
+    console.log(data)
 
 
     function handleChange(event) {
@@ -155,9 +155,9 @@ export default function Dashboard(){
 
             <div className="img-info">
                 {data && <h3>Rover: {formData.rover} </h3>}
-                {data && <h3>Mars Date (sol): {roverData.max_sol} </h3>}
+                {data && <h3>Rover Max Sol: {roverData.max_sol} </h3>}
                 {data && <h3>Mars Date (sol): {formData.sol} </h3>}
-                {/* {data && <h3>Earth Date: {data.photos[0].earth_date} </h3>} */}
+                {/* {(data != [] && data) && <h3>Earth Date: {data.photos[0].earth_date} </h3>} */}
             </div>
 
             <div className="img-container">
