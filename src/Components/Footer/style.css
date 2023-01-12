@@ -2,11 +2,12 @@
 
 
 .footer-container{
-    width: 95%;
-    min-height: 35vh;
+    width: 96%;
+    min-height: 32vh;
     padding-left: 5%;
     padding-right: 5%;
     margin: 0 auto;
+    margin-bottom: 1%;
     background-color: #c1440e;
     border-radius: 20px;
 }
