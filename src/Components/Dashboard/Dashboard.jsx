@@ -149,7 +149,7 @@ export default function Dashboard(){
                     {<option value="">Choose Camera</option>}
                     {curCameras && curCameras.map((cameratype, index) => <option value={cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
                 </select>
-                <button type="submit" className="form-submit">Submit</button>
+                <button type="submit" className="form-submit">Download All Images</button>
 
             </form>
 
