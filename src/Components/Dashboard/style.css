@@ -70,4 +70,10 @@
         text-indent: 5px;
         margin-top: 2rem;
     }
+    .form-submit{
+        width: 60%;
+        margin: 25px;
+        padding: 10px;
+        font-size: 1.8rem;
+    }
 }
