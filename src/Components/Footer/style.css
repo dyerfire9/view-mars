@@ -34,7 +34,7 @@
     flex-direction: column;
     width: 50%;
     text-align: center;
-    border-right: 2px solid #fff;
+    /* border-right: 2px solid #fff; */
     padding: 5px;
 }
 
@@ -42,7 +42,7 @@
     font-size: 1.5rem;
     font-weight: normal;
     color: #fff;
-    width: 90%;
+    width: 100%;
 }
 .footer-contact-content{
     font-size: 1.5rem;
@@ -54,7 +54,7 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    border-left: 2px solid #fff;
+    /* border-left: 2px solid #fff; */
     padding: 5px;
     text-align: center;
 
@@ -88,4 +88,97 @@
 .footer-contact-name{
     font-size: 2.5rem;
     font-weight: 600;
+}
+
+@media screen and (max-width: 480px){
+    .footer-container{
+        width: 96%;
+        min-height: 32vh;
+        padding-left: 5%;
+        padding-right: 5%;
+        margin: 0 auto;
+        margin-bottom: 1%;
+        background-color: #c1440e;
+        border-radius: 20px;
+    }
+    
+    .footer-content-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 5px;
+        
+    }
+    .footer-title{
+        font-family: 'Product Sans', sans-serif;
+        font-size: 3.5rem;
+        color: #fff;
+        letter-spacing: 2px;
+        text-align: left;
+    }
+    .footer-about{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: left;
+        padding: 5px;
+        border: 1px solid #fff;
+    }
+    
+    .footer-about-content{
+        font-size: 1rem;
+        font-weight: normal;
+        color: #fff;
+        width: 100%;
+        border: 1px solid #fff;
+    }
+    .footer-contact-content{
+        font-size: 1.5rem;
+        font-weight: normal;
+        color: #fff;
+        width: 100%;
+        border: 1px solid #fff;
+    }
+    .footer-contact{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 5px;
+        text-align: center;
+        border: 1px solid #fff;
+    
+    }
+    
+    .footer-contact-bio{
+        font-size: 1.4rem;
+    }
+    
+    
+    .footer-contact-links{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        text-align: center;
+        margin-top: 10px;
+    }
+    
+    .footer-links{
+        text-decoration: none;
+        background-color:#f0e7e7;
+        color: #c1440e;
+        padding: 10px;
+        margin: 5px 0px;
+        border-radius: 15px;
+        font-size: 1.6rem;
+    }
+    
+    
+    .footer-contact-name{
+        font-size: 2.5rem;
+        font-weight: 600;
+    }
+    
+
 }
