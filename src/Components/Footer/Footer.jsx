@@ -7,7 +7,7 @@ export default function Footer(){
     const style2 = {color: "#c1440e", fontSize: "1.5rem", verticalAlign: "text-bottom", marginRight: '2px'}
 
     return (
-        <div className="footer-container">
+        <div id="Footer" className="footer-container">
             <div className="footer-content-container">
                 <div className="footer-about">
                     <h2 className="footer-title">About</h2>

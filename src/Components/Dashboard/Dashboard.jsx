@@ -3,6 +3,10 @@ import './style.css'
 import temp_pic from './temp_pic.jpg'
 import ImageCard from "./ImageCard/ImageCard"
 import ImageViewer from "./ImageViewer/ImageViewer"
+import JsZip from 'jszip';
+import FileSaver from 'file-saver';
+import Promise from 'bluebird';
+
 
 export default function Dashboard(){  
     const errorLegend = {
@@ -61,6 +65,60 @@ export default function Dashboard(){
     console.log(roverData)
     console.log(data)
 
+    function downloadAllImages(){
+        var src;
+        let img_obj = new Image();
+        let files = document.getElementsByClassName('imagecard-img')
+        let urls = []
+
+        for (let i = 0; i < files.length; i++){
+           urls.push(files[i].currentSrc) 
+        }
+
+        function crossOrigin(url) {
+            var co = "https://api.codetabs.com/v1/proxy?quest=";
+            src = co + url;
+            img_obj.crossOrigin = 'anonymous';
+            img_obj.onload = function() { ; }
+            img_obj.src = src;
+    
+            return img_obj.src;
+          }
+    
+        function download(url){
+            let link = crossOrigin(url)
+
+            return fetch(link, {mode: 'cors'})
+            .then(resp => resp.blob())
+            .catch(() => console.log('An error in downloading the file sorry'));
+        }
+          
+          function groupDownload (urls, files_per_group=5){
+
+            return Promise.map(
+              urls, 
+              async url => {
+                return await download(url);
+              },
+              {concurrency: files_per_group}
+            );
+          }
+          
+          function exportZip(blobs){
+            console.log(blobs)
+            const zip = JsZip();
+            blobs.forEach((blob, i) => {
+              zip.file(`file-${i}.png`, blob);
+            });
+            zip.generateAsync({type: 'blob'}).then(zipFile => {
+              const fileName = `${formData.rover}-${formData.cameratype}-${formData.sol}.zip`;
+              return FileSaver.saveAs(zipFile, fileName);
+            });
+          }
+          
+          groupDownload(urls, 5).then(exportZip);
+         
+    }
 
     function handleChange(event) {
         setFormData(prevFormData =>{
@@ -149,7 +207,7 @@ export default function Dashboard(){
                     {<option value="">Choose Camera</option>}
                     {curCameras && curCameras.map((cameratype, index) => <option value={cameratype} key={index}>{cameraLegend[cameratype]}</option>)}
                 </select>
-                <button type="submit" className="form-submit">Download All Images</button>
+                <button type="submit" className="form-submit" onClick={downloadAllImages}>Download All Images</button>
 
             </form>
 
