@@ -18,9 +18,9 @@ A tool designed for research and analysis of the planet Mars surface & geology. 
 - Search by inputing the parameters (Sol, Rover, and Rover Camera)
 - Access to thousands of high-quality images from Mars Rovers (Curiosity, Opportunity, Spirit)
 - Access to all imagery data from all rover cameras
-- Download images individually or all together (Almost completed download all functionality)
+- Download images individually or all together
 - View Map to reference location of image data (40% completed) 
-- Help Function (20% completed)
+- Help Function (40% completed)
 
 ## Install and Run Application Locally
 
@@ -29,7 +29,7 @@ This project requires Node.js to be installed in order to run
 1. Clone the Repo, then install dependencies
 2. npm install
 3. npm start to start a localhost server with the website.
-4. Enjoy
+4. Enjoy Exploring Mars
 
 
 
