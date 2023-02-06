@@ -111,7 +111,7 @@ export default function Dashboard(){
               zip.file(`file-${i}.png`, blob);
             });
             zip.generateAsync({type: 'blob'}).then(zipFile => {
-              const fileName = `${formData.rover}-${formData.cameratype}-${formData.sol}.zip`;
+              const fileName = `${formData.rover}-${formData.cameratype}-sol ${formData.sol}.zip`;
               return FileSaver.saveAs(zipFile, fileName);
             });
           }
