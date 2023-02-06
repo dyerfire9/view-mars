@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/view-mars/static/css/main.5b4900f5.css",
+    "main.css": "/view-mars/static/css/main.5293ab99.css",
     "main.js": "/view-mars/static/js/main.64f66f07.js",
     "static/media/temp_pic.jpg": "/view-mars/static/media/temp_pic.db8e61eb6d874504f10e.jpg",
     "index.html": "/view-mars/index.html",
-    "main.5b4900f5.css.map": "/view-mars/static/css/main.5b4900f5.css.map",
+    "main.5293ab99.css.map": "/view-mars/static/css/main.5293ab99.css.map",
     "main.64f66f07.js.map": "/view-mars/static/js/main.64f66f07.js.map"
   },
   "entrypoints": [
-    "static/css/main.5b4900f5.css",
+    "static/css/main.5293ab99.css",
     "static/js/main.64f66f07.js"
   ]
 }
