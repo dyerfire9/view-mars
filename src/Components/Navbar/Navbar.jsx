@@ -1,4 +1,6 @@
 import React from "react"
+import HelpModal from '../Help Modal/HelpModal'
+
 import './style.css'
 
 

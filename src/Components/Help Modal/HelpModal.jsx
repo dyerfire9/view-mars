@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Help(){
+export default function HelpModal(){
     return(
         <div className="help-container">
             
