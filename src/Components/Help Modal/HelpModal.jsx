@@ -1,13 +1,12 @@
 import React from "react";
 
-export default function HelpModal(){
-    let [helpModal, setHelpModal] = React.useState(true)
+export default function HelpModal(props){
+    
     return(
         <div className="help-modal">
             <div className="help-modal-container">
-                Hello
+                <h2>Help Module</h2>
             </div>
-        <HelpModal state={helpModal} setState={setHelpModal}/>
         </div>
     )
 }

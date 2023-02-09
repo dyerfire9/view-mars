@@ -5,15 +5,21 @@ import './style.css'
 
 
 export default function Navbar(){
-    let [help]
+    let [helpModal, setHelpModal] = React.useState(false)
+
+    function toggle(){
+        setHelpModal(prevVal => !prevVal)
+    }
+
     return (
         <div className='navbar'>
             <h1 className="navbar-header justify-start">ViewMars</h1>
             <div className='navbar-buttons'> 
                 <a href="#Footer">About</a>
-                <a onclick={}>Help</a>
+                <a onClick={toggle}>Help</a>
             </div>
-        <HelpModal id="HelpModal" className=""/>
+            <HelpModal state={helpModal} />
+
         </div>
     )
 }
