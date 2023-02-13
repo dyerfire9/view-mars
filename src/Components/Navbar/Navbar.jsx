@@ -18,7 +18,7 @@ export default function Navbar(){
                 <a href="#Footer">About</a>
                 <a onClick={toggle}>Help</a>
             </div>
-            <HelpModal state={helpModal} />
+            <HelpModal state={helpModal} changeState={toggle} />
 
         </div>
     )
