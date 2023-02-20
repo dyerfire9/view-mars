@@ -20,7 +20,7 @@ A tool designed for research and analysis of the planet Mars surface & geology. 
 - Access to all imagery data from all rover cameras
 - Download images individually or all together
 - View Map to reference location of image data (40% completed) 
-- Help Module (40% completed)
+- Help Module
 
 ## Install and Run Application Locally
 
