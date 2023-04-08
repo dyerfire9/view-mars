@@ -21,7 +21,7 @@ A tool designed for research and analysis of the planet Mars surface & geology. 
 - Download images individually or all together
 - View Map to reference location of image data (40% completed) 
 - Help Module
-
+- Technologies: React, JavaScript, HTML, CSS
 ## Install and Run Application Locally
 
 This project requires Node.js to be installed in order to run
